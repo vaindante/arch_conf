@@ -1,0 +1,3 @@
+/home/vigrigoryev/meeting.sh %U
+  ^https?://tinkoff.zoom.us/j
+
