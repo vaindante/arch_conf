@@ -7,6 +7,7 @@ local awful = require("awful")
 --	naughty.notify({text = text})
 --end
 
+
 function getHostName()
     local f = io.popen("/bin/hostname")
     local hostname = f:read("*a") or ""
@@ -144,7 +145,6 @@ end
 
 return {
     hostname = getHostName(),
---    screenNumber = getScreenNumber(),
     runOnce = runOnce,
     backlight = backlight,
     volume = volume,
@@ -153,4 +153,5 @@ return {
     setVolTimer = setVolTimer,
     setTooltip = setTooltip,
     setBatteryT = setBatteryT,
+
 }

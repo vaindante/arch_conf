@@ -2,7 +2,9 @@
 x-scheme-handler/tg=userapp-Telegram Desktop-YDNNX0.desktop
 x-scheme-handler/msteams=teams.desktop
 image/png=lximage-qt.desktop
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=wps-office-et.desktop
 
 [Added Associations]
 x-scheme-handler/tg=userapp-Telegram Desktop-YDNNX0.desktop;
 image/png=lximage-qt.desktop;
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=wps-office-et.desktop;

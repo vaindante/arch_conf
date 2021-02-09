@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<gconf>
+	<entry name="middle_button_emulation" mtime="1611657783" type="bool" value="true"/>
+	<entry name="device_type" mtime="1611657803" type="string">
+		<stringvalue>mouse</stringvalue>
+	</entry>
+</gconf>

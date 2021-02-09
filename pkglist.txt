@@ -1,4 +1,5 @@
 arandr
+at
 autoconf
 automake
 awesome
@@ -6,11 +7,13 @@ base
 binutils
 bison
 bluez
+cheese
 chromium
 clipmenu
 dconf-editor
 dhcpcd
 dialog
+discord
 docker
 dosfstools
 dunst
@@ -20,6 +23,7 @@ evolution-ews
 fakeroot
 file
 findutils
+firefox
 flameshot
 flatpak
 flex
@@ -57,9 +61,11 @@ openresolv
 os-prober
 pacman
 pamixer
+pasystray
 patch
 pavucontrol
 pcmanfm-gtk3
+perl-file-mimeinfo
 picom
 pkgconf
 pulseaudio-bluetooth
@@ -68,13 +74,11 @@ rofi
 sed
 simplescreenrecorder
 sudo
-teams
 telegram-desktop
 texinfo
 thunderbird
 tmux
 ttf-hack
-ttf-ms-fonts
 ttf-ubuntu-font-family
 unzip
 usbutils
@@ -85,6 +89,7 @@ wireless_tools
 wpa_supplicant
 xarchiver
 xcursor-vanilla-dmz-aa
+xf86-input-synaptics
 xf86-video-vesa
 xfce4-notifyd
 xorg-bdftopcf
@@ -136,6 +141,5 @@ xorg-xwd
 xorg-xwininfo
 xorg-xwud
 xsecurelock
-yay-bin
 zsh
 zsh-completions

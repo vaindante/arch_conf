@@ -21,6 +21,19 @@ require("awful.hotkeys_popup.keys")
 -- *****************
 local host_conf	=	require("host_conf")
 
+for ss in screen do
+    local geo = ss.geometry
+    if geo.width == 3440 then
+        local new_width = math.ceil(geo.width/2)
+        local new_width2 = geo.width - new_width
+        ss:fake_resize(geo.x, geo.y, new_width, geo.height)
+        screen.fake_add(geo.x + new_width, geo.y, new_width2, geo.height)
+    end
+end
+-- *****************
+
+-- *****************
+
 local awpwkb	=	require("awpwkb")
 kb = awpwkb.init()
 -- *****************
@@ -90,22 +103,6 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
 }
--- }}}
-
--- {{{ Menu
--- Create a launcher widget and a main menu
--- myawesomemenu = {
---    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
---    { "manual", terminal .. " -e man awesome" },
---    { "edit config", editor_cmd .. " " .. awesome.conffile },
---    { "restart", awesome.restart },
---    { "quit", function() awesome.quit() end },
--- }
-
--- mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
---                                     { "open terminal", terminal }
---                                   }
---                         })
 
 
 -- *****************
@@ -187,7 +184,7 @@ awful.screen.connect_for_each_screen(function(s)
 
     -- Each screen has its own tag table.
     -- awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, awful.layout.layouts[1])
-    
+
     -- *****************
     layouts = host_conf.getLayouts()
     awful.tag({ "1", "2", "3", "4", "5", "6", "7", "8", "9" }, s, layouts)
@@ -296,9 +293,7 @@ globalkeys = gears.table.join(
               {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
               {description = "focus the previous screen", group = "screen"}),
-    awful.key({ modkey,  }, "bracketright", function () awful.screen.focus_relative( 1) end,
-              {description = "focus the next screen", group = "screen"}),
-    awful.key({ modkey,  }, "bracketleft", function () awful.screen.focus_relative(-1) end,
+    awful.key({ modkey,  "Shift"}, "Tab", function () awful.screen.focus_relative(-1) end,
               {description = "focus the previous screen", group = "screen"}),
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),

@@ -120,9 +120,11 @@ end
 -- ############################################################################################
 -- Hotkeys
 function getHotkeys()
+    number = screen:count()
+
     hotkeys = gears.table.join(awful.key({ modkey, }, "r", function()
-        awful.spawn('rofi -show run')
-    end),
+                awful.spawn('rofi -show run')
+            end),
             awful.key({ modkey, "Shift" }, "d", function()
                 awful.spawn('rofi -show windowcd')
             end),
@@ -134,6 +136,18 @@ function getHotkeys()
             end),
             awful.key({ modkey, "Shift" }, "XF86Favorites", function()
                 awful.spawn(APPS.lock_manager)
+            end),
+
+            awful.key({ }, "XF86Tools", function()
+                awful.spawn.with_shell("mic_toggle")
+            end),
+
+            awful.key({ modkey, "Shift" }, "XF86TouchpadToggle", function()
+                awful.spawn.with_shell('nmcli connection down x5')
+            end),
+
+            awful.key({ modkey }, "XF86TouchpadToggle", function()
+                awful.spawn.with_shell('nmcli connection up x5')
             end),
 
             awful.key({    }, "XF86AudioRaiseVolume", function()
@@ -152,16 +166,16 @@ function getHotkeys()
                 helpers.backlight("dec")
             end),
 
-            awful.key({ }, "XF86AudioPlay", function()
-                awful.spawn('playerctl play-pause', false)
-            end),
-            awful.key({ }, "XF86AudioPrev", function()
-                awful.spawn('playerctl previous', false)
-            end),
-            awful.key({ }, "XF86AudioNext", function()
-                awful.spawn('playerctl next', false)
-            end),
-
+--            awful.key({ }, "XF86AudioPlay", function()
+--                awful.spawn('playerctl play-pause', false)
+--            end),
+--            awful.key({ }, "XF86AudioPrev", function()
+--                awful.spawn('playerctl previous', false)
+--            end),
+--            awful.key({ }, "XF86AudioNext", function()
+--                awful.spawn('playerctl next', false)
+--            end),
+--
             awful.key({ modkey, }, "Up", function()
                 awful.client.focus.bydirection("up")
             end),
@@ -175,11 +189,20 @@ function getHotkeys()
                 awful.client.focus.bydirection("right")
             end),
 
+            awful.key({ modkey, }, "a", function()
+                awful.screen.focus(1)
+                awful.screen.focused().tags[3]:view_only()
+            end),
             awful.key({ modkey, }, "s", function()
-                awful.screen.focus(2)
+                awful.screen.focus(number)
                 awful.screen.focused().tags[5]:view_only()
             end),
+            awful.key({ modkey, }, "d", function()
+                awful.screen.focus(number)
+                awful.screen.focused().tags[7]:view_only()
+            end),
             awful.key({ modkey, }, "g", function()
+                awful.screen.focus(1)
                 awful.screen.focused().tags[8]:view_only()
             end),
 
@@ -194,7 +217,7 @@ function getHotkeys()
             awful.key({ 'Ctrl', }, "grave", function()
                 awful.spawn.with_shell('clipmenu')
             end),
-            awful.key({ 'Ctrl', }, "Print", function()
+            awful.key({  }, "XF86Explorer", function()
                 awful.spawn.with_shell('flameshot gui -p ~/screen')
             end))
 
@@ -230,7 +253,8 @@ function getClientRules(client_rules)
         "qBittorrent",
         "mpv",
         "Skype",
-        "explorer.exe"
+        "explorer.exe",
+	"TelegramDesktop"
     }
     float_apps_top = {
         "Galculator",
@@ -240,12 +264,14 @@ function getClientRules(client_rules)
 
     -- host additional settings
     --float_app = gears.table.join(float_app, {"TelegramDesktop"})
+    number = screen:count()
     client_rules = gears.table.join(client_rules, {
-        { rule = { class = "TelegramDesktop" }, properties = { screen = 2, tag = "5" } },
+        { rule = { class = "TelegramDesktop" }, properties = { screen = number, tag = "5" } },
+        { rule = { class = "Microsoft Teams - Preview" }, properties = { screen = number, tag = "7" } },
         { rule = { class = "Slack" }, properties = { screen = 1, tag = "9" } },
         { rule = { class = "Evolution" }, properties = { screen = 1, tag = "8" } },
         { rule = { class = "Chromium" }, properties = { screen = 1, tag = "3" } },
-        { rule = { class = "zoom" }, properties = { screen = screen_number, tag = zoom_number } },
+        { rule = { class = "zoom" }, properties = { screen = number, tag = "7" } },
         { rule = { class = "eu.tiliado.NuvolaAppYandexMusic" }, properties = { screen = 1, tag = "6" } }
     })
 
@@ -313,7 +339,8 @@ function initAutostart()
         'blueman-applet',
         'thunderbird',
         'chromium',
-        --'firefox',
+        'mictray',
+	'eu.tiliado.NuvolaAppYandexMusic',
         APPS.terminal .. ' -e tmux-session-main.sh',
     }
 
